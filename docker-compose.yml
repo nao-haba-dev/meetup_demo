@@ -1,0 +1,22 @@
+services:
+  db:
+    # 使用イメージ
+    image: mysql:8.0
+    # Dockerの公式MySQLの文字コードをutf8mb4にする
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    container_name: meetup_db_container
+    # ホスト（mysql-data-volume)をコンテナ(/var/lib/mysql)にマウント
+    volumes:
+      - mysql-data-volume:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      TZ: 'Asia/Tokyo'
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: meetup
+      MYSQL_USER: app
+      MYSQL_PASSWORD: secret
+
+# データの永続化
+volumes:
+  mysql-data-volume:
