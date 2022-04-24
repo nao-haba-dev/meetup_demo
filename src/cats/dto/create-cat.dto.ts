@@ -1,4 +1,4 @@
-import { IsNotEmpty, MaxLength } from 'class-validator';
+import { IsDefined, IsNotEmpty, MaxLength } from 'class-validator';
 
 export class CreateCatDto {
   @IsNotEmpty({ message: '名前は必須項目です' })
