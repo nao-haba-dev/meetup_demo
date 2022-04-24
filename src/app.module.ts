@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { CatsModule } from './cats/cats.module';
 import configuration from './config/configuration';
 
 @Module({
@@ -32,6 +33,8 @@ import configuration from './config/configuration';
       }),
       inject: [ConfigService],
     }),
+
+    CatsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
