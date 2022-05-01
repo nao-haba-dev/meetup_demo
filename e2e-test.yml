@@ -1,0 +1,43 @@
+# docker-composeで使用するバージョン
+version: '3'
+
+# アプリケーションを動かすための各要素
+services:
+  # コンテナ名
+  app:
+    # ComposeFileを実行し、ビルドされるときのpath
+    build:
+      # docker buildコマンドを実行した場所
+      context: "."
+      # Dockerfileのある場所
+      dockerfile: "DockerfileTest"
+    # コンテナ名
+    container_name: github-actions-api-test
+    # ポート番号
+    ports:
+      - '3000:3000'
+      # 環境変数
+    environment:
+      PORT: 3000
+      TZ: 'Asia/Tokyo'
+      DB_HOST: 'testDb'
+      DB_PORT: '3306'
+      DB_USERNAME: 'root'
+      DB_PASSWORD: 'password'
+      DB_NAME: 'meetup'
+      # サービス間の依存関係
+    depends_on:
+      - testDb
+
+  testDb:
+    image: mysql:8.0
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    container_name: db_container_e2e_test
+    ports:
+      - "3306:3306"
+    environment:
+      TZ: 'Asia/Tokyo'
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: meetup
+      MYSQL_USER: app
+      MYSQL_PASSWORD: secret

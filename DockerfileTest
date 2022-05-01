@@ -1,0 +1,10 @@
+FROM node:14.16.1-alpine as build-test-db
+
+# workディレクトリ内にマウントします
+WORKDIR /work
+
+COPY . /work/
+
+RUN npm install
+
+CMD ["npm","run","test:e2e"]
