@@ -1,4 +1,8 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { UpdateCatDto } from './dto/update-cat.dto';
 import { Cat } from './entities/cat.entity';
@@ -35,9 +39,14 @@ export class CatsService {
    * @param id
    */
   async findOne(id: number): Promise<Cat> {
-    return await this.catRepository.findOneOrFail(id).catch((e) => {
-      throw new InternalServerErrorException(e.message);
-    });
+    const cat = await this.catRepository.findOne(id);
+
+    if (!cat) {
+      throw new NotFoundException(
+        `${id}に一致するデータが見つかりませんでした。`,
+      );
+    }
+    return cat;
   }
 
   /**
