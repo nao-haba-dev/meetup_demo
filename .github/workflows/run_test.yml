@@ -2,6 +2,7 @@
 on:
   # mainブランチにプッシュすると実行する
   push:
+  pull_request:
     branches:
       - main
 # ジョブ定義
