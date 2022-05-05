@@ -62,7 +62,7 @@ describe('CatsController (e2e)', () => {
     const dto: CreateCatDto = { name: 'テスト' };
     const res = await saveCat(dto);
     expect(res.body.name).toEqual(dto.name);
-    expect(res.status).toEqual(400);
+    expect(res.status).toEqual(201);
   });
 
   it('/ create(NG)-名前未入力(POST)', async () => {
