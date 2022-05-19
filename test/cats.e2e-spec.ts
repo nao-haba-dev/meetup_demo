@@ -65,7 +65,7 @@ describe('CatsController (e2e)', () => {
     expect(res.status).toEqual(201);
   });
 
-  it('/ create(NG)-名前未入力(POST)', async () => {
+  it('/ create(NG)-未入力(POST)', async () => {
     const dto: CreateCatDto = { name: null };
     const res = await saveCat(dto);
     expect(res.status).toEqual(400);
