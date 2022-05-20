@@ -3,7 +3,6 @@ import { CatsController } from './cats.controller';
 import { CatsService } from './cats.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Cat } from './entities/cat.entity';
-import { Repository } from 'typeorm';
 import { AppModule } from '../app.module';
 
 describe('CatsController', () => {

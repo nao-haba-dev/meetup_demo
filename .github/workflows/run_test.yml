@@ -1,7 +1,6 @@
 # ワークフローをトリガーするGitHubイベントの名前
 on:
-  # mainブランチにプッシュすると実行する
-  push:
+  # mainブランチにPRすると実行する
   pull_request:
     branches:
       - main
