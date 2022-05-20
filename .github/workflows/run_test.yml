@@ -2,7 +2,6 @@
 on:
   # mainブランチにPRすると実行する
   pull_request:
-  push:
     branches:
       - main
 # ジョブ定義
