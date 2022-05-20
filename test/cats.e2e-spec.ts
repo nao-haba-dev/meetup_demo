@@ -58,7 +58,7 @@ describe('CatsController (e2e)', () => {
     return request(app.getHttpServer()).get(`/cats/${id}`);
   }
 
-  it('/ create(OK)(POST)', async () => {
+  it('/ create(OK1)(POST)', async () => {
     const dto: CreateCatDto = { name: 'テスト' };
     const res = await saveCat(dto);
     expect(res.body.name).toEqual(dto.name);
